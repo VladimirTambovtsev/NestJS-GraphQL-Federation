@@ -1,0 +1,76 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+
+  """Email of the user"""
+  email: String!
+
+  """Password of the user"""
+  password: String!
+
+  """Age of the user"""
+  age: Int
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type UserOutput {
+  id: ID
+  createdAt: DateTime
+  updatedAt: DateTime
+
+  """Email of the user"""
+  email: String
+
+  """Age of the user"""
+  age: Int
+}
+
+type AuthToken {
+  token: String!
+}
+
+type Query {
+  user(id: ID!): User!
+  users: [UserOutput]!
+}
+
+type Mutation {
+  createUser(createUserData: CreateUserInput!): UserOutput!
+  deleteUser(deleteUserData: DeleteUserInput!): UserOutput!
+  login(login: LoginInput!): AuthToken!
+  registration(registration: LoginInput!): AuthToken!
+}
+
+input CreateUserInput {
+  email: String!
+  password: String!
+  age: Float!
+}
+
+input DeleteUserInput {
+  id: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}

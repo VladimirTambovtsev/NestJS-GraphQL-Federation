@@ -1,0 +1,37 @@
+version: '3.0'
+
+services:
+  main:
+    container_name: microservices-uber-eats-restaurants
+    build:
+      context: .
+    env_file:
+      - .development.env
+    environment:
+      POSTGRES_HOST: postgres
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 4002:4002
+      # - 9229:9229 # debug port
+    command: npm run start:dev
+    depends_on:
+      - postgres
+    restart: always
+  postgres:
+    container_name: postgres
+    image: postgres:12
+    env_file:
+      - .development.env
+    environment:
+      PG_DATA: /var/lib/postgresql/data
+      POSTGRES_HOST: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  pgdata:

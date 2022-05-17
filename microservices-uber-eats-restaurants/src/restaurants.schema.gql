@@ -1,0 +1,47 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @key(fields: String!) on OBJECT | INTERFACE
+
+directive @extends on OBJECT | INTERFACE
+
+directive @external on OBJECT | FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+type User {
+  id: ID!
+}
+
+type Restaurant {
+  id: ID!
+
+  """Example field (placeholder)"""
+  exampleField: Int!
+  user: User!
+}
+
+type Query {
+  restaurants: [Restaurant!]!
+  restaurant(id: Int!): Restaurant!
+}
+
+type Mutation {
+  createRestaurant(createRestaurantInput: CreateRestaurantInput!): Restaurant!
+  updateRestaurant(updateRestaurantInput: UpdateRestaurantInput!): Restaurant!
+  removeRestaurant(id: Int!): Restaurant!
+}
+
+input CreateRestaurantInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateRestaurantInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
